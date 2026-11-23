@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Account Details Generator</title>
+    <meta name="description" content="Generate random usernames, 4–64 character passwords, test emails, display names, UUIDs and six-digit PINs. Customize passwords and copy any result.">
+    <link rel="canonical" href="https://shellsec.com/gen/en/">
+    <link rel="alternate" hreflang="zh-CN" href="https://shellsec.com/gen/">
+    <link rel="alternate" hreflang="en" href="https://shellsec.com/gen/en/">
+    <link rel="alternate" hreflang="x-default" href="https://shellsec.com/gen/">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <main class="container">
+        <nav class="language-switch" aria-label="Language"><a href="../" lang="zh-CN" hreflang="zh-CN">简体中文</a></nav>
+        <h1>Random Account Details Generator</h1>
+
+        <div class="result-container">
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">Username</div>
+                    <div id="username" class="result-value">Click Generate</div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="profile">Generate</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="username">Copy</button>
+                </div>
+            </div>
+
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">Password</div>
+                    <div id="password" class="result-value">Click Generate</div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="password">Generate</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="password">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-container">
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">Test email</div>
+                    <div id="testEmail" class="result-value"></div>
+                </div>
+                <button type="button" class="action-btn copy-btn" data-copy="testEmail">Copy</button>
+                <div class="email-service">
+                    Test addresses cannot receive mail ·
+                    <a href="https://tempomailusa.com/?ref=TM4C8594" target="_blank" rel="noopener sponsored">Open TempoMail inbox</a>
+                </div>
+            </div>
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">Display name</div>
+                    <div id="displayName" class="result-value"></div>
+                </div>
+                <button type="button" class="action-btn copy-btn" data-copy="displayName">Copy</button>
+            </div>
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">UUID</div>
+                    <div id="testUuid" class="result-value"></div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="uuid">Generate</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="testUuid">Copy</button>
+                </div>
+            </div>
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">Six-digit test PIN</div>
+                    <div id="testPin" class="result-value"></div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="pin">Generate</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="testPin">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="options-container">
+            <div class="option-group">
+                <div class="option-title">Username style</div>
+                <select id="usernameStyle" class="select-group">
+                    <option value="adjective_noun">Adjective + noun (AmberWren)</option>
+                    <option value="noun_number">Noun + two digits (Bison42)</option>
+                    <option value="firstname_lastname">First + last name (AdaReed)</option>
+                    <option value="random_mix">Adjective + noun + one digit (SolarOrca7)</option>
+                    <option value="adjective_noun_three_digits">Adjective + noun + three digits (SolarOrca247)</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <div class="option-title">Password length (4–64)</div>
+                <div class="slider-group">
+                    <input type="range" id="passwordLength" class="slider" min="4" max="64" value="16">
+                    <span id="passwordLengthValue" class="slider-value">16</span>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <div class="option-title">Password character types</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="uppercase" checked>
+                        <span>Uppercase (A-Z)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="lowercase" checked>
+                        <span>Lowercase (a-z)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="numbers" checked>
+                        <span>Numbers (0–9)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="symbols" checked>
+                        <span>Symbols (!@#$%)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="generate-all" class="generate-both-btn">Generate all</button>
+        <footer class="project-links">
+            <a href="https://github.com/shellsec/gen">View source on GitHub</a>
+        </footer>
+    </main>
+
+    <div id="notification" class="notification" role="status" data-success="Copied to clipboard" data-failure="Copy failed. Select and copy the text manually."></div>
+
+    <script src="../generator.js"></script>
+</body>
+</html>

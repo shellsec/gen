@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机账号信息生成器</title>
+    <meta name="description" content="在线随机生成用户名、4–64 位密码、测试邮箱、显示昵称、UUID 和六位 PIN。可自定义密码字符类型，一键生成和复制。">
+    <link rel="canonical" href="https://shellsec.com/gen/">
+    <link rel="alternate" hreflang="zh-CN" href="https://shellsec.com/gen/">
+    <link rel="alternate" hreflang="en" href="https://shellsec.com/gen/en/">
+    <link rel="alternate" hreflang="x-default" href="https://shellsec.com/gen/">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <nav class="language-switch" aria-label="语言"><a href="en/" lang="en" hreflang="en">English</a></nav>
+        <h1>随机账号信息生成器</h1>
+
+        <div class="result-container">
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">用户名</div>
+                    <div id="username" class="result-value">点击生成按钮</div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="profile">生成</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="username">复制</button>
+                </div>
+            </div>
+
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">密码</div>
+                    <div id="password" class="result-value">点击生成按钮</div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="password">生成</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="password">复制</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-container">
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">测试邮箱</div>
+                    <div id="testEmail" class="result-value"></div>
+                </div>
+                <button type="button" class="action-btn copy-btn" data-copy="testEmail">复制</button>
+                <div class="email-service">
+                    测试地址无法收信 ·
+                    <a href="https://tempomailusa.com/?ref=TM4C8594" target="_blank" rel="noopener sponsored">打开 TempoMail 收信</a>
+                </div>
+            </div>
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">显示昵称</div>
+                    <div id="displayName" class="result-value"></div>
+                </div>
+                <button type="button" class="action-btn copy-btn" data-copy="displayName">复制</button>
+            </div>
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">UUID</div>
+                    <div id="testUuid" class="result-value"></div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="uuid">生成</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="testUuid">复制</button>
+                </div>
+            </div>
+            <div class="result-box">
+                <div class="result-content">
+                    <div class="result-label">六位测试 PIN</div>
+                    <div id="testPin" class="result-value"></div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="action-btn generate-single-btn" data-generate="pin">生成</button>
+                    <button type="button" class="action-btn copy-btn" data-copy="testPin">复制</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="options-container">
+            <div class="option-group">
+                <div class="option-title">用户名风格</div>
+                <select id="usernameStyle" class="select-group">
+                    <option value="adjective_noun">形容词+名词 (如: AmberWren)</option>
+                    <option value="noun_number">名词+数字 (如: Bison42)</option>
+                    <option value="firstname_lastname">名+姓 (如: AdaReed)</option>
+                    <option value="random_mix">形容词+名词+一位数字 (如: SolarOrca7)</option>
+                    <option value="adjective_noun_three_digits">形容词+名词+三位数字 (如: SolarOrca247)</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <div class="option-title">密码长度 (4-64位)</div>
+                <div class="slider-group">
+                    <input type="range" id="passwordLength" class="slider" min="4" max="64" value="16">
+                    <span id="passwordLengthValue" class="slider-value">16</span>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <div class="option-title">密码包含字符</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="uppercase" checked>
+                        <span>大写字母 (A-Z)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="lowercase" checked>
+                        <span>小写字母 (a-z)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="numbers" checked>
+                        <span>数字 (0-9)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="symbols" checked>
+                        <span>符号 (!@#$%)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="generate-all" class="generate-both-btn">生成全部</button>
+        <footer class="project-links">
+            <a href="https://github.com/shellsec/gen">在 GitHub 查看源码</a>
+        </footer>
+    </main>
+
+    <div id="notification" class="notification" role="status" data-success="已复制到剪贴板" data-failure="复制失败，请手动选取文本"></div>
+
+    <script src="generator.js"></script>
+</body>
+</html>
